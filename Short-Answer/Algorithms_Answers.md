@@ -5,8 +5,9 @@
 a) O(n). A single while loop performing one operational check.
 
 
-b) O(n^2). It's a while loop nested in a for loop, meaning it will loop for each
-individual loop in the range given.
+b) O(n log(n)). The for loop operation is has time complexity O(n) because it is
+linear. The nested while loop has time complxity O(log(n)) because j increases
+exponentially each iteration. So for each iteration of n, there is a log(n) iteration.
 
 
 c) O(n). It's performing a linear recursive function.
