@@ -97,7 +97,44 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        while self.light_is_on() == False:
+            # Light on will indicate if we are finished or not.
+            self.set_light_on()
+            # While there are more elements to the right..
+            while self.can_move_right():
+                # Start the loop and compare against element to the right by one
+                self.swap_item()
+                self.move_right()
+                # If our item is larger than the item we're comparing against...
+                if self.compare_item() == 1:
+                    # Turn light off to indicate we are not finished after this loop...
+                    self.set_light_off()
+                    self.swap_item()
+                # If our item was larger, the swap on the line above will ensure we place the smaller item to the left, if not, this will return it
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            # Once we can't move right the loop breaks and we know we're at the last position
+            # Check to see if we're done...
+            if self.light_is_on() == False:
+                # If not, turn the light back on
+                self.set_light_on()
+                # Move back one since we already checked the last two numbers coming from the right
+                self.move_left()
+                # Basically reverse sorting now, moving left, bringing larger elements to the right
+                while self.can_move_left():
+                    # Start the new loop and compare against element to the left by one
+                    self.swap_item()
+                    self.move_left()
+                    # If our item is smaller than the item we're comparing against...
+                    if self.compare_item() == -1:
+                        # Turn light off to indicate we are not finished after this loop...
+                        self.set_light_off()
+                        self.swap_item()
+                    # If our item was smaller, the swap on the line above will ensure we place the larger item to the right, if not, this will return it
+                    self.move_right()
+                    self.swap_item()
+                    self.move_left()
 
 
 if __name__ == "__main__":
